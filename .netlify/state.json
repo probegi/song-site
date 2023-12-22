@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Hamadacho",
+			"country": {
+				"code": "JP",
+				"name": "Japan"
+			},
+			"subdivision": {
+				"code": "14",
+				"name": "Kanagawa"
+			},
+			"timezone": "Asia/Tokyo",
+			"latitude": 35.4389,
+			"longitude": 139.3899
+		},
+		"timestamp": 1703223007935
+	}
+}

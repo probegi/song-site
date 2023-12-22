@@ -1,5 +1,4 @@
 import { useState } from "react";
-import YouTube from "react-youtube";
 import YoutubeItem from "./components/youtube";
 
 export default function App() {
