@@ -7,11 +7,12 @@ export default function App() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const get_title = event.target.elements.customtitle.value;
     const get_name = event.target.elements.customname.value;
-    setUrl(`/.netlify/functions/song?title=${get_name}`);
+    setUrl(`/.netlify/functions/song?title=${get_title} ${get_name}`);
 
     const response = await fetch(
-      `/.netlify/functions/youtube?name=${get_name}`
+      `/.netlify/functions/youtube?name=${get_title} ${get_name}`
     );
     const id = await response.json();
     setId(id);
@@ -21,7 +22,16 @@ export default function App() {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="customname">曲のタイトルと歌手名を入力:</label>
+          <label htmlFor="customtitle">曲のタイトルを入力:</label>
+          <input
+            type="text"
+            id="customtitle"
+            className="input is-info is-small"
+            placeholder=""
+          />
+        </div>
+        <div>
+          <label htmlFor="customname">歌手名を入力:</label>
           <input
             type="text"
             id="customname"
