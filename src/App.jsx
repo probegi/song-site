@@ -73,7 +73,13 @@ export default function App() {
         <div className="content has-text-centered">
           <p>
             from&ensp;
-            <a href="https://nationalize.io/">nationalize.io</a>
+            <a href="https://developers.google.com/youtube/v3/docs/search/list?hl=ja">
+              YouTube Data API v3
+            </a>
+            <br></br>
+            <a href="https://docs.genius.com/#/getting-started-h1">
+              Genius API
+            </a>
           </p>
         </div>
       </footer>
