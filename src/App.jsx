@@ -32,7 +32,7 @@ export default function App() {
           <div className="container">
             <form className="enter-block" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="customtitle">曲のタイトルを入力:</label>
+                <label htmlFor="customtitle">曲名を入力:</label>
                 <input
                   type="text"
                   id="customtitle"
