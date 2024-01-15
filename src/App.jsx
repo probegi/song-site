@@ -13,6 +13,8 @@ export default function App() {
       `/.netlify/functions/song?title=${get_title} ${get_name}`
     );
 
+    console.log("res", url_res);
+
     if (url_res.status === 204) {
       setUrl(null);
     } else {
