@@ -70,23 +70,27 @@ export default function App() {
                 </button>
               </div>
             </form>
-            <div className="music-result">
-              <div>
+            <div>
+              <div className="columns is-desktop">
                 {list.map((l) => {
                   return (
                     <div
+                      className="column"
                       onClick={() => {
                         setSelectedId(l.id.videoId);
                       }}
                     >
                       <img
+                        className="thumbnail"
                         key={l.snippet.thumbnails.default.url}
                         src={l.snippet.thumbnails.default.url}
                       />
+                      <div className="youtube_title">{l.snippet.title}</div>
                     </div>
                   );
                 })}
               </div>
+
               <div>
                 <YoutubeItem id={selectedId} />
               </div>
