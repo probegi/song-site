@@ -9,11 +9,9 @@ export default async function (request) {
   const key = process.env.YOUTUBE_API_KEY;
 
   const response = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?q=${name}&key=${key}`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${name}&key=${key}`
   );
   const data = await response.json();
 
-  const id = data.items[0]?.id.videoId;
-
-  return new Response(JSON.stringify(id));
+  return new Response(JSON.stringify(data.items));
 }

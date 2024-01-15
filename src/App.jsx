@@ -3,7 +3,8 @@ import YoutubeItem from "./components/youtube";
 
 export default function App() {
   const [url, setUrl] = useState("");
-  const [id, setId] = useState();
+  const [list, setList] = useState([]);
+  const [selectedId, setSelectedId] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -24,8 +25,9 @@ export default function App() {
     const response = await fetch(
       `/.netlify/functions/youtube?name=${get_title} ${get_name}`
     );
-    const id = await response.json();
-    setId(id);
+    const list = await response.json();
+    setList(list);
+    console.log(list);
   }
 
   return (
@@ -70,7 +72,23 @@ export default function App() {
             </form>
             <div className="music-result">
               <div>
-                <YoutubeItem id={id} />
+                {list.map((l) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        setSelectedId(l.id.videoId);
+                      }}
+                    >
+                      <img
+                        key={l.snippet.thumbnails.default.url}
+                        src={l.snippet.thumbnails.default.url}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div>
+                <YoutubeItem id={selectedId} />
               </div>
               <div>
                 {url === null ? (
