@@ -2,14 +2,22 @@ import { useState } from "react";
 import YoutubeItem from "./components/youtube";
 
 export default function App() {
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState("");
   const [id, setId] = useState();
 
   async function handleSubmit(event) {
     event.preventDefault();
     const get_title = event.target.elements.customtitle.value;
     const get_name = event.target.elements.customname.value;
-    setUrl(`/.netlify/functions/song?title=${get_title} ${get_name}`);
+    const url_res = await fetch(
+      `/.netlify/functions/song?title=${get_title} ${get_name}`
+    );
+
+    if (url_res.status === 204) {
+      setUrl(null);
+    } else {
+      setUrl(url_res.url);
+    }
 
     const response = await fetch(
       `/.netlify/functions/youtube?name=${get_title} ${get_name}`
@@ -63,7 +71,11 @@ export default function App() {
                 <YoutubeItem id={id} />
               </div>
               <div>
-                <iframe src={url}></iframe>
+                {url === null ? (
+                  <div>歌詞を取得できませんでした。</div>
+                ) : (
+                  <iframe src={url}></iframe>
+                )}
               </div>
             </div>
           </div>
