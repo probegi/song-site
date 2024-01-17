@@ -49,6 +49,7 @@ export default function App() {
                   type="text"
                   id="customtitle"
                   className="input is-info is-small"
+                  autocomplete="off"
                   placeholder=""
                 />
               </div>
@@ -58,6 +59,7 @@ export default function App() {
                   type="text"
                   id="customname"
                   className="input is-info is-small"
+                  autocomplete="off"
                   placeholder=""
                 />
               </div>
