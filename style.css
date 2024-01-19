@@ -2,6 +2,11 @@
   padding-bottom: 25px;
 }
 
+.search_button {
+  display: flex;
+  justify-content: center;
+}
+
 .thumbnail {
   width: 200px;
   max-width: none;
@@ -11,6 +16,12 @@
 .youtube_title {
   font-size: 1rem;
   font-weight: normal;
+}
+
+.song_result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 iframe {

@@ -44,7 +44,7 @@ export default function App() {
           <div className="container">
             <form className="enter-block" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="customtitle">曲名を入力:</label>
+                <label htmlFor="customtitle">曲名を入力</label>
                 <input
                   type="text"
                   id="customtitle"
@@ -53,8 +53,8 @@ export default function App() {
                   placeholder=""
                 />
               </div>
-              <div>
-                <label htmlFor="customname">歌手名を入力:</label>
+              <div className="pt-3">
+                <label htmlFor="customname">歌手名を入力</label>
                 <input
                   type="text"
                   id="customname"
@@ -63,9 +63,10 @@ export default function App() {
                   placeholder=""
                 />
               </div>
-              <div>
+
+              <div className="search_button pt-3">
                 <button
-                  className="button is-link is-light is-small"
+                  className="button is-link is-light is-normal"
                   type="submit"
                 >
                   検索
@@ -92,16 +93,17 @@ export default function App() {
                   );
                 })}
               </div>
-
-              <div>
-                <YoutubeItem id={selectedId} />
-              </div>
-              <div>
-                {url === null ? (
-                  <div>歌詞を取得できませんでした。</div>
-                ) : (
-                  <iframe src={url}></iframe>
-                )}
+              <div className="song_result">
+                <div>
+                  <YoutubeItem id={selectedId} />
+                </div>
+                <div>
+                  {url === null ? (
+                    <div>歌詞を取得できませんでした。</div>
+                  ) : (
+                    <iframe src={url}></iframe>
+                  )}
+                </div>
               </div>
             </div>
           </div>
