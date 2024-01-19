@@ -5,21 +5,22 @@ export default function App() {
   const [url, setUrl] = useState("");
   const [list, setList] = useState([]);
   const [selectedId, setSelectedId] = useState("");
+  const [lyricList, setLyricList] = useState([]);
 
   async function handleSubmit(event) {
     event.preventDefault();
     const get_title = event.target.elements.customtitle.value;
     const get_name = event.target.elements.customname.value;
-    const url_res = await fetch(
-      `/.netlify/functions/song?title=${get_title} ${get_name}`
-    );
 
-    console.log("res", url_res);
+    try {
+      const url_res = await fetch(
+        `/.netlify/functions/song?title=${get_title} ${get_name}`
+      );
 
-    if (url_res.status === 204) {
-      setUrl(null);
-    } else {
-      setUrl(url_res.url);
+      const data = await url_res.json();
+      setLyricList(data);
+    } catch (error) {
+      console.error(error);
     }
 
     const response = await fetch(
@@ -27,7 +28,11 @@ export default function App() {
     );
     const list = await response.json();
     setList(list);
-    console.log(list);
+  }
+
+  async function getLyric(id) {
+    const response = await fetch(`/.netlify/functions/lyric?id=${id}`);
+    setUrl(response.url);
   }
 
   return (
@@ -89,6 +94,25 @@ export default function App() {
                         src={l.snippet.thumbnails.default.url}
                       />
                       <div className="youtube_title">{l.snippet.title}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="columns is-desktop">
+                {lyricList.map((l) => {
+                  return (
+                    <div
+                      className="column"
+                      onClick={() => {
+                        console.log(l);
+                        getLyric(l.result.id);
+                      }}
+                    >
+                      <img
+                        className="thumbnail"
+                        src={l.result.header_image_url}
+                      />
+                      <div className="youtube_title">{l.result.full_title}</div>
                     </div>
                   );
                 })}
