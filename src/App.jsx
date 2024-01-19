@@ -80,14 +80,15 @@ export default function App() {
               </div>
             </form>
             <div>
-              <div className="columns is-desktop pb-6">
+              <div className="pb-4">動画を選択</div>
+              <div className="columns is-desktop pb-4">
                 {list.map((l) => {
                   return (
                     <div
                       className="column"
                       style={{
                         backgroundColor:
-                          selectedId === l.id.videoId && "chartreuse",
+                          selectedId === l.id.videoId && "Aquamarine",
                       }}
                       onClick={() => {
                         setSelectedId(l.id.videoId);
@@ -105,6 +106,7 @@ export default function App() {
                   );
                 })}
               </div>
+              <div className="pb-4">歌詞を選択</div>
               <div className="columns is-desktop">
                 {lyricList.map((l) => {
                   return (
@@ -112,7 +114,7 @@ export default function App() {
                       className="column"
                       style={{
                         backgroundColor:
-                          selectedLyric === l.result.id && "chartreuse",
+                          selectedLyric === l.result.id && "Cyan",
                       }}
                       onClick={() => {
                         setSelectedLyric(l.result.id);
