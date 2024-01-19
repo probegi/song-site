@@ -6,6 +6,7 @@ export default function App() {
   const [list, setList] = useState([]);
   const [selectedId, setSelectedId] = useState("");
   const [lyricList, setLyricList] = useState([]);
+  const [selectedLyric, setSelectedLyric] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -79,20 +80,26 @@ export default function App() {
               </div>
             </form>
             <div>
-              <div className="columns is-desktop">
+              <div className="columns is-desktop pb-6">
                 {list.map((l) => {
                   return (
                     <div
                       className="column"
+                      style={{
+                        backgroundColor:
+                          selectedId === l.id.videoId && "chartreuse",
+                      }}
                       onClick={() => {
                         setSelectedId(l.id.videoId);
                       }}
                     >
-                      <img
-                        className="thumbnail"
-                        key={l.snippet.thumbnails.default.url}
-                        src={l.snippet.thumbnails.default.url}
-                      />
+                      <div className="image_container">
+                        <img
+                          className="thumbnail"
+                          key={l.snippet.thumbnails.default.url}
+                          src={l.snippet.thumbnails.default.url}
+                        />
+                      </div>
                       <div className="youtube_title">{l.snippet.title}</div>
                     </div>
                   );
@@ -103,15 +110,21 @@ export default function App() {
                   return (
                     <div
                       className="column"
+                      style={{
+                        backgroundColor:
+                          selectedLyric === l.result.id && "chartreuse",
+                      }}
                       onClick={() => {
-                        console.log(l);
+                        setSelectedLyric(l.result.id);
                         getLyric(l.result.id);
                       }}
                     >
-                      <img
-                        className="thumbnail"
-                        src={l.result.header_image_url}
-                      />
+                      <div className="image_container">
+                        <img
+                          className="thumbnail"
+                          src={l.result.header_image_thumbnail_url}
+                        />
+                      </div>
                       <div className="youtube_title">{l.result.full_title}</div>
                     </div>
                   );
